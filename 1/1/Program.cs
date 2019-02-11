@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,8 @@ namespace _1
     {
         static void Main(string[] args)
         {
-            var orders = new Queue<string>();
+            //using ConcurrentQueue ensures thread safety, now works
+            var orders = new ConcurrentQueue<string>();
             Task task1 = new Task(() => orderProducts(orders, "mark"));
             Task task2 = new Task(() => orderProducts(orders, "Lucy"));
             task1.Start();
@@ -22,7 +24,7 @@ namespace _1
         }
 
 
-        static void orderProducts(Queue<string> orders, string name)
+        static void orderProducts(ConcurrentQueue<string> orders, string name)
         {
             for (int i = 0; i < 5; i++)
             {
