@@ -12,7 +12,7 @@ namespace _1
     {
         static void Main(string[] args)
         {
-            //using ConcurrentQueue ensures thread safety
+            //using ConcurrentQueue ensures thread safety, now works
             var orders = new ConcurrentQueue<string>();
             Task task1 = new Task(() => orderProducts(orders, "mark"));
             Task task2 = new Task(() => orderProducts(orders, "Lucy"));
